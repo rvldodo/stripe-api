@@ -1,0 +1,252 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Kima API",
+		"description": "API for website Kima",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:6969",
+			"description": "development 1"
+		},
+		{
+			"url": "http://localhost:3000",
+			"description": "development 2"
+		}
+	],
+	"components": {
+		"securitySchemes": {
+			"bearer": {
+				"type": "http",
+				"scheme": "bearer"
+			}
+		}
+	},
+	"tags": [
+		{
+			"name": "Register and Login",
+			"description": "User register and login routes"
+		},
+		{
+			"name": "Users",
+			"description": "User routes"
+		}
+	],
+	"paths": {
+		"/api/register": {
+			"post": {
+				"tags": ["Register and Login"],
+				"summary": " User register",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"firstName": {
+										"type": "string"
+									},
+									"lastName": {
+										"type": "string"
+									},
+									"middleName": {
+										"type": "string"
+									},
+									"email": {
+										"type": "string"
+									},
+									"password": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Success registered"
+					},
+					"400": {
+						"description": "Bad request"
+					}
+				}
+			}
+		},
+		"/api/login": {
+			"post": {
+				"tags": ["Register and Login"],
+				"summary": "User login using email and password",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"email": {
+										"type": "string"
+									},
+									"password": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Login success"
+					},
+					"404": {
+						"description": "User not found"
+					}
+				}
+			}
+		},
+		"/api/users": {
+			"get": {
+				"tags": ["Users"],
+				"summary": "Get all users information",
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success get all users"
+					},
+					"403": {
+						"description": "Unauthorized"
+					},
+					"400": {
+						"description": "Bad request"
+					}
+				}
+			}
+		},
+		"/api/users/{id}": {
+			"get": {
+				"tags": ["Users"],
+				"summary": "Get user by id",
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						},
+						"description": "User id"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success get user"
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"403": {
+						"description": "Unauthorized"
+					},
+					"404": {
+						"description": "Not found"
+					}
+				}
+			},
+			"put": {
+				"tags": ["Users"],
+				"summary": "Update user by id",
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						},
+						"description": "User id"
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"firstName": {
+										"type": "string"
+									},
+									"middleName": {
+										"type": "string"
+									},
+									"lastName": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Success update user"
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"403": {
+						"description": "Unauthorized"
+					},
+					"404": {
+						"description": "Not found"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["Users"],
+				"summary": "Delete user by id",
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						},
+						"description": "User id"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success delete user"
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"403": {
+						"description": "Unauthorized"
+					}
+				}
+			}
+		}
+	}
+}
