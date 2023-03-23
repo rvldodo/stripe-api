@@ -8,7 +8,9 @@ import sequelizeConnection from "./config/dbConnect";
 dotenv.config();
 
 // routes import
+import itemRoutes from "./api/routes/itemRoutes";
 import loginRoutes from "./api/routes/loginRoutes";
+import orderRoutes from "./api/routes/orderRoutes";
 import registerRoutes from "./api/routes/registerRoutes";
 import userRoutes from "./api/routes/userRoutes";
 
@@ -29,6 +31,8 @@ app.use(express.static("public"));
 app.use("/api/register", registerRoutes);
 app.use("/api/login", loginRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/items", itemRoutes);
+app.use("/api/orders", orderRoutes);
 
 app.listen(PORT, async () => {
 	console.log(`Server running on ${process.env.NODE_ENV} mode in port ${PORT}`);
