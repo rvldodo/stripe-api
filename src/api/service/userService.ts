@@ -65,7 +65,7 @@ class UserService {
 				},
 			],
 			attributes: {
-				exclude: ["createdAt", "updatedAt", "password"],
+				exclude: ["createdAt", "updatedAt"],
 			},
 		});
 	}

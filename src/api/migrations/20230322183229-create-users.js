@@ -32,7 +32,7 @@ module.exports = {
 					},
 					key: "id",
 				},
-				defaultValue: 3,
+				defaultValue: 2,
 			},
 			createdAt: {
 				allowNull: false,

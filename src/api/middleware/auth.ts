@@ -1,9 +1,6 @@
-import dotenv from "dotenv";
 import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
 import AppError from "../helpers/appError";
 import ExtractToken from "../helpers/helper";
-dotenv.config();
 
 const authorization = (req: Request, res: Response, next: NextFunction) => {
 	const bearer = req.headers["authorization"];
@@ -24,4 +21,14 @@ const authorization = (req: Request, res: Response, next: NextFunction) => {
 	next();
 };
 
-export default authorization;
+const adminRole = (req: Request, res: Response, next: NextFunction) => {
+	const { roleId } = res.locals;
+
+	if (roleId !== 1) {
+		throw new AppError(403, "Unauthorized access", 400);
+	}
+
+	next();
+};
+
+export { adminRole, authorization };
