@@ -1,7 +1,7 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import dbConnect from "../../config/dbConnect";
 import ItemsInterface from "../interfaces/itemsInterface";
-import { OrderInput } from "./orders";
+import Orders, { OrderInput } from "./orders";
 
 export interface ItemInput extends Optional<ItemsInterface, "id"> {}
 export interface ItemOutput extends Required<ItemsInterface> {}

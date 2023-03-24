@@ -16,6 +16,7 @@ class ItemController {
 	}
 
 	static async getAllItems(req: Request, res: Response): Promise<Response> {
+		console.log("masukk");
 		const items = await ItemService.findAllItems();
 
 		if (!items) {

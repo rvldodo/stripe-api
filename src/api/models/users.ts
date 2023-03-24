@@ -16,7 +16,6 @@ class Users extends Model<UserInterface, UserInput> implements UserInterface {
 	public email!: string;
 	public password!: string;
 	public roleId!: number;
-	public orderId!: number;
 	public balanceId!: number;
 
 	public readonly createdAt!: Date;
@@ -59,14 +58,6 @@ Users.init(
 				key: "id",
 			},
 		},
-		orderId: {
-			type: DataTypes.INTEGER,
-			allowNull: true,
-			references: {
-				model: Orders,
-				key: "id",
-			},
-		},
 		balanceId: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
@@ -83,8 +74,7 @@ Users.init(
 	}
 );
 
-// association
-Users.belongsTo(Roles, { foreignKey: "roleId", as: "role" });
+// associations
 Users.belongsTo(Orders, { foreignKey: "orderId", as: "order" });
 Users.belongsTo(Balance, { foreignKey: "balanceId", as: "balance" });
 

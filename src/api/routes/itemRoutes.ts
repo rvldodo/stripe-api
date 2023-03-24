@@ -7,9 +7,9 @@ const router = Router();
 
 router.post("/", authorization, adminRole, tryCatch(ItemController.createItem));
 
-router.get("/", authorization, tryCatch(ItemController.getAllItems));
+router.get("/", tryCatch(ItemController.getAllItems));
 
-router.get("/:id", authorization, tryCatch(ItemController.getItemById));
+router.get("/:id", tryCatch(ItemController.getItemById));
 
 router.put(
 	"/:id",

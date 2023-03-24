@@ -31,6 +31,10 @@
 		{
 			"name": "Users",
 			"description": "User routes"
+		},
+		{
+			"name": "Items",
+			"description": "Item routes"
 		}
 	],
 	"paths": {
@@ -238,6 +242,167 @@
 				"responses": {
 					"200": {
 						"description": "Success delete user"
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"403": {
+						"description": "Unauthorized"
+					}
+				}
+			}
+		},
+		"/api/items": {
+			"get": {
+				"tags": ["Items"],
+				"summary": "Get all items information",
+				"responses": {
+					"200": {
+						"description": "Success get all items"
+					},
+					"403": {
+						"description": "Unauthorized"
+					},
+					"400": {
+						"description": "Bad request"
+					}
+				}
+			},
+			"post": {
+				"tags": ["Items"],
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"summary": "Post new item",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"item": {
+										"type": "string"
+									},
+									"price": {
+										"type": "integer"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Item created"
+					},
+					"400": {
+						"description": "Bad request"
+					}
+				}
+			}
+		},
+		"/api/items/{id}": {
+			"get": {
+				"tags": ["Items"],
+				"summary": "Get item by id",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						},
+						"description": "Item id"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success get item"
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"404": {
+						"description": "Not found"
+					}
+				}
+			},
+			"put": {
+				"tags": ["Items"],
+				"summary": "Update item by id",
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						},
+						"description": "Item id"
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"item": {
+										"type": "string"
+									},
+									"price": {
+										"type": "integer"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Success update item"
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"403": {
+						"description": "Unauthorized"
+					},
+					"404": {
+						"description": "Not found"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["Items"],
+				"summary": "Delete item by id",
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						},
+						"description": "Item id"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success delete item"
 					},
 					"400": {
 						"description": "Bad request"

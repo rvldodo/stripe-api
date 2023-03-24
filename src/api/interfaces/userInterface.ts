@@ -6,7 +6,6 @@ export default interface UserInterface {
 	email?: string | null;
 	password?: string | null;
 	roleId?: number | null;
-	orderId?: number | null;
 	balanceId?: number | null;
 
 	createdAt?: Date;

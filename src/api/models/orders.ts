@@ -2,6 +2,8 @@ import { DataTypes, Model, Optional } from "sequelize";
 import dbConnect from "../../config/dbConnect";
 import OrderInterface from "../interfaces/orderInterface";
 import Items from "./items";
+import Payments from "./payment";
+import Users from "./users";
 
 export interface OrderInput extends Optional<OrderInterface, "id"> {}
 export interface OrderOutput extends Required<OrderInterface> {}
@@ -48,6 +50,7 @@ Orders.init(
 	}
 );
 
+// associations
 Orders.belongsTo(Items, { foreignKey: "itemId", as: "item" });
 
 export default Orders;

@@ -5,7 +5,7 @@ import BalanceInterface from "../interfaces/balanceInterface";
 export interface BalanceInput extends Optional<BalanceInterface, "id"> {}
 export interface BalanceOutput extends Required<BalanceInterface> {}
 
-class Balance
+class Balances
 	extends Model<BalanceInterface, BalanceInput>
 	implements BalanceInterface
 {
@@ -16,7 +16,7 @@ class Balance
 	public readonly updatedAt!: Date;
 }
 
-Balance.init(
+Balances.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -31,4 +31,4 @@ Balance.init(
 	{ sequelize: dbConnect, timestamps: true, underscored: false }
 );
 
-export default Balance;
+export default Balances;

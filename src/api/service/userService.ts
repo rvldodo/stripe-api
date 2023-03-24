@@ -7,7 +7,8 @@ class UserService {
 		middleName: string,
 		lastName: string,
 		email: string,
-		password: string
+		password: string,
+		balanceId: number
 	) {
 		return await Users.create({
 			firstName,
@@ -15,6 +16,7 @@ class UserService {
 			lastName,
 			email,
 			password,
+			balanceId,
 		});
 	}
 
