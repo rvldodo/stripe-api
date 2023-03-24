@@ -40,7 +40,7 @@ Orders.init(
 			type: DataTypes.INTEGER,
 		},
 		totalPrice: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.FLOAT(10, 2),
 		},
 	},
 	{

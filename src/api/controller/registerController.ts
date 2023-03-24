@@ -26,7 +26,7 @@ class registerController {
 			throw new AppError(400, "Cannot register user", 400);
 		}
 
-		return res.status(201).json({ message: "User registered", user });
+		return res.status(201).json({ message: "User registered" });
 	}
 }
 

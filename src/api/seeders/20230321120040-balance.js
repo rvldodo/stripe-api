@@ -3,6 +3,9 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
+		await queryInterface.sequelize.query(
+			'ALTER SEQUENCE "Balances_id_seq" RESTART WITH 101'
+		);
 		await queryInterface.bulkInsert("Balances", [
 			{
 				id: 1,

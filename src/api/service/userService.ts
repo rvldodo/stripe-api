@@ -37,7 +37,7 @@ class UserService {
 		});
 	}
 
-	static async findUserById(id: string) {
+	static async findUserById(id: any) {
 		return await Users.findByPk(id, {
 			include: [
 				{

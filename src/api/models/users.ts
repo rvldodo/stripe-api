@@ -75,7 +75,7 @@ Users.init(
 );
 
 // associations
-Users.belongsTo(Orders, { foreignKey: "orderId", as: "order" });
 Users.belongsTo(Balance, { foreignKey: "balanceId", as: "balance" });
+Users.belongsTo(Roles, { foreignKey: "roleId", as: "role" });
 
 export default Users;

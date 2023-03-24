@@ -1,8 +1,8 @@
 {
 	"openapi": "3.0.0",
 	"info": {
-		"title": "Kima API",
-		"description": "API for website Kima",
+		"title": "Stripe Payment API",
+		"description": "API for learning using stripe for payment",
 		"version": "1.0.0"
 	},
 	"servers": [
@@ -29,19 +29,23 @@
 			"description": "User register and login routes"
 		},
 		{
-			"name": "Users",
-			"description": "User routes"
+			"name": "Admin",
+			"description": "Admin access routes"
 		},
 		{
-			"name": "Items",
-			"description": "Item routes"
+			"name": "User",
+			"description": "User access routes"
+		},
+		{
+			"name": "Public",
+			"description": "Public access routes"
 		}
 	],
 	"paths": {
 		"/api/register": {
 			"post": {
 				"tags": ["Register and Login"],
-				"summary": " User register",
+				"summary": "User register",
 				"requestBody": {
 					"content": {
 						"application/json": {
@@ -56,6 +60,10 @@
 									},
 									"middleName": {
 										"type": "string"
+									},
+									"deposit": {
+										"type": "number",
+										"format": "float"
 									},
 									"email": {
 										"type": "string"
@@ -111,7 +119,7 @@
 		},
 		"/api/users": {
 			"get": {
-				"tags": ["Users"],
+				"tags": ["Admin"],
 				"summary": "Get all users information",
 				"security": [
 					{
@@ -133,7 +141,7 @@
 		},
 		"/api/users/{id}": {
 			"get": {
-				"tags": ["Users"],
+				"tags": ["Admin"],
 				"summary": "Get user by id",
 				"security": [
 					{
@@ -167,7 +175,7 @@
 				}
 			},
 			"put": {
-				"tags": ["Users"],
+				"tags": ["Admin"],
 				"summary": "Update user by id",
 				"security": [
 					{
@@ -221,7 +229,7 @@
 				}
 			},
 			"delete": {
-				"tags": ["Users"],
+				"tags": ["Admin"],
 				"summary": "Delete user by id",
 				"security": [
 					{
@@ -254,7 +262,7 @@
 		},
 		"/api/items": {
 			"get": {
-				"tags": ["Items"],
+				"tags": ["Public"],
 				"summary": "Get all items information",
 				"responses": {
 					"200": {
@@ -269,7 +277,7 @@
 				}
 			},
 			"post": {
-				"tags": ["Items"],
+				"tags": ["Admin"],
 				"security": [
 					{
 						"bearer": []
@@ -305,7 +313,7 @@
 		},
 		"/api/items/{id}": {
 			"get": {
-				"tags": ["Items"],
+				"tags": ["Public"],
 				"summary": "Get item by id",
 				"parameters": [
 					{
@@ -331,7 +339,7 @@
 				}
 			},
 			"put": {
-				"tags": ["Items"],
+				"tags": ["Admin"],
 				"summary": "Update item by id",
 				"security": [
 					{
@@ -382,7 +390,7 @@
 				}
 			},
 			"delete": {
-				"tags": ["Items"],
+				"tags": ["Admin"],
 				"summary": "Delete item by id",
 				"security": [
 					{
@@ -409,6 +417,200 @@
 					},
 					"403": {
 						"description": "Unauthorized"
+					}
+				}
+			}
+		},
+		"/api/orders": {
+			"get": {
+				"tags": ["Admin"],
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"summary": "Get all orders information",
+				"responses": {
+					"200": {
+						"description": "Success get all orders"
+					},
+					"403": {
+						"description": "Unauthorized"
+					},
+					"400": {
+						"description": "Bad request"
+					}
+				}
+			},
+			"post": {
+				"tags": ["User"],
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"summary": "Create new order",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"itemId": {
+										"type": "integer"
+									},
+									"quantity": {
+										"type": "integer"
+									},
+									"totalPrice": {
+										"type": "integer"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Order created"
+					},
+					"400": {
+						"description": "Bad request"
+					}
+				}
+			}
+		},
+		"/api/orders/{id}": {
+			"get": {
+				"tags": ["Admin"],
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"summary": "Get all orders information",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						},
+						"description": "Order id"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success get all orders"
+					},
+					"403": {
+						"description": "Unauthorized"
+					},
+					"400": {
+						"description": "Bad request"
+					}
+				}
+			}
+		},
+		"/api/balance/check": {
+			"get": {
+				"tags": ["User"],
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"summary": "Get user balance information",
+				"responses": {
+					"200": {
+						"description": "Success get balance"
+					},
+					"403": {
+						"description": "Unauthorized"
+					},
+					"400": {
+						"description": "Bad request"
+					}
+				}
+			}
+		},
+		"/api/balance/deposit": {
+			"put": {
+				"tags": ["User"],
+				"summary": "Deposit user balance",
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"deposit": {
+										"type": "number",
+										"format": "float"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Success deposit balance"
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"403": {
+						"description": "Unauthorized"
+					},
+					"404": {
+						"description": "Not found"
+					}
+				}
+			}
+		},
+		"/api/balance/withdraw": {
+			"put": {
+				"tags": ["User"],
+				"summary": "Withdraw user balance",
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"withdraw": {
+										"type": "number",
+										"format": "float"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Success withdraw balance"
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"403": {
+						"description": "Unauthorized"
+					},
+					"404": {
+						"description": "Not found"
 					}
 				}
 			}
