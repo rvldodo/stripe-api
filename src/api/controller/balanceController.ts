@@ -40,7 +40,7 @@ class BalanceController {
 
 		return res.status(200).json({
 			Deposit: `${deposit}$`,
-			Total_Balance: `${oldBalance.balance}$`,
+			Total_Balance: `${oldBalance.balance.toFixed(2)}$`,
 		});
 	}
 
@@ -107,7 +107,7 @@ class BalanceController {
 		}
 
 		return res.status(200).json({
-			Balance: `${balance.balance}$`,
+			Balance: `${balance.balance.toFixed(2)}$`,
 		});
 	}
 }

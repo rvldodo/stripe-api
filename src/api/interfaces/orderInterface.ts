@@ -3,6 +3,7 @@ export default interface OrderInterface {
 	itemId?: number;
 	quantity?: number;
 	totalPrice?: number;
+	userId?: number;
 
 	createdAt?: Date;
 	updatedAt?: Date;

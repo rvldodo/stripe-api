@@ -42,6 +42,13 @@ Orders.init(
 		totalPrice: {
 			type: DataTypes.FLOAT(10, 2),
 		},
+		userId: {
+			type: DataTypes.INTEGER,
+			references: {
+				model: Users,
+				key: "id",
+			},
+		},
 	},
 	{
 		sequelize: dbConnect,
@@ -52,5 +59,6 @@ Orders.init(
 
 // associations
 Orders.belongsTo(Items, { foreignKey: "itemId", as: "item" });
+Orders.belongsTo(Users, { foreignKey: "userId", as: "user" });
 
 export default Orders;

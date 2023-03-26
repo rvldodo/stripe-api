@@ -423,7 +423,7 @@
 		},
 		"/api/orders": {
 			"get": {
-				"tags": ["Admin"],
+				"tags": ["Admin", "User"],
 				"security": [
 					{
 						"bearer": []
@@ -461,9 +461,6 @@
 									},
 									"quantity": {
 										"type": "integer"
-									},
-									"totalPrice": {
-										"type": "integer"
 									}
 								}
 							}
@@ -482,7 +479,7 @@
 		},
 		"/api/orders/{id}": {
 			"get": {
-				"tags": ["Admin"],
+				"tags": ["Admin", "User"],
 				"security": [
 					{
 						"bearer": []

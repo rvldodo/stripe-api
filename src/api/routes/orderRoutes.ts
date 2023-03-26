@@ -7,19 +7,9 @@ const router = Router();
 
 router.post("/", authorization, tryCatch(orderController.createOrder));
 
-router.get(
-	"/",
-	authorization,
-	adminRole,
-	tryCatch(orderController.getAllOrders)
-);
+router.get("/", authorization, tryCatch(orderController.getAllOrders));
 
-router.get(
-	"/:id",
-	authorization,
-	adminRole,
-	tryCatch(orderController.getOrderById)
-);
+router.get("/:id", authorization, tryCatch(orderController.getOrderById));
 
 router.put(
 	"/:id",

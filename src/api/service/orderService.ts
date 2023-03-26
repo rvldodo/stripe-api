@@ -1,16 +1,19 @@
 import Items from "../models/items";
 import Orders from "../models/orders";
+import Users from "../models/users";
 
 class OrderService {
 	static async createOrder(
 		itemId: number,
 		quantity: number,
-		totalPrice: number
+		totalPrice: number,
+		userId: number
 	) {
 		return await Orders.create({
 			itemId,
 			quantity,
 			totalPrice,
+			userId,
 		});
 	}
 
@@ -20,6 +23,13 @@ class OrderService {
 				{
 					model: Items,
 					as: "item",
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+				{
+					model: Users,
+					as: "user",
 					attributes: {
 						exclude: ["createdAt", "updatedAt"],
 					},
@@ -34,6 +44,23 @@ class OrderService {
 	static async findOrderById(id: string) {
 		return await Orders.findOne({
 			where: { id },
+			include: [
+				{
+					model: Items,
+					as: "item",
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+			],
+			attributes: {
+				exclude: ["createdAt", "updatedAt"],
+			},
+		});
+	}
+	static async findAllOrdersByUserId(userId: number) {
+		return await Orders.findAll({
+			where: { userId },
 			include: [
 				{
 					model: Items,
