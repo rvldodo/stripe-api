@@ -27,7 +27,7 @@ Items.init(
 			type: DataTypes.STRING,
 		},
 		price: {
-			type: DataTypes.FLOAT(10, 2),
+			type: DataTypes.INTEGER,
 		},
 	},
 	{ sequelize: dbConnect, underscored: false, timestamps: true }

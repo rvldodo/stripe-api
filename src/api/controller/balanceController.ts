@@ -39,8 +39,8 @@ class BalanceController {
 		await oldBalance.save();
 
 		return res.status(200).json({
-			Deposit: `${deposit}$`,
-			Total_Balance: `${oldBalance.balance.toFixed(2)}$`,
+			Deposit: `${deposit / 100}$`,
+			Total_Balance: `${oldBalance.balance / 100}$`,
 		});
 	}
 
@@ -76,8 +76,8 @@ class BalanceController {
 		await oldBalance.save();
 
 		return res.status(200).json({
-			Withdraw: `${withdraw}$`,
-			Total_Balance: `${oldBalance.balance}$`,
+			Withdraw: `${withdraw / 100}$`,
+			Total_Balance: `${oldBalance.balance / 100}$`,
 		});
 	}
 
@@ -107,7 +107,7 @@ class BalanceController {
 		}
 
 		return res.status(200).json({
-			Balance: `${balance.balance.toFixed(2)}$`,
+			Balance: `${balance.balance / 100}$`,
 		});
 	}
 }

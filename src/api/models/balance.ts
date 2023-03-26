@@ -25,7 +25,7 @@ Balances.init(
 			autoIncrement: true,
 		},
 		balance: {
-			type: DataTypes.FLOAT(10, 2),
+			type: DataTypes.INTEGER,
 		},
 	},
 	{ sequelize: dbConnect, timestamps: true, underscored: false }

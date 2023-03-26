@@ -62,8 +62,7 @@
 										"type": "string"
 									},
 									"deposit": {
-										"type": "number",
-										"format": "float"
+										"type": "integer"
 									},
 									"email": {
 										"type": "string"
@@ -548,8 +547,7 @@
 								"type": "object",
 								"properties": {
 									"deposit": {
-										"type": "number",
-										"format": "float"
+										"type": "integer"
 									}
 								}
 							}
@@ -588,8 +586,7 @@
 								"type": "object",
 								"properties": {
 									"withdraw": {
-										"type": "number",
-										"format": "float"
+										"type": "integer"
 									}
 								}
 							}
@@ -608,6 +605,25 @@
 					},
 					"404": {
 						"description": "Not found"
+					}
+				}
+			}
+		},
+		"/api/payment": {
+			"get": {
+				"tags": ["User"],
+				"security": [
+					{
+						"bearer": []
+					}
+				],
+				"summary": "Payment",
+				"responses": {
+					"200": {
+						"description": "Payment success"
+					},
+					"400": {
+						"description": "Bad request"
 					}
 				}
 			}

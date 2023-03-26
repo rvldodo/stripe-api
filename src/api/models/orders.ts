@@ -19,6 +19,7 @@ class Orders
 
 	public readonly createdAt!: Date;
 	public readonly updatedAt!: Date;
+	item: any;
 }
 
 Orders.init(
@@ -40,7 +41,7 @@ Orders.init(
 			type: DataTypes.INTEGER,
 		},
 		totalPrice: {
-			type: DataTypes.FLOAT(10, 2),
+			type: DataTypes.INTEGER,
 		},
 		userId: {
 			type: DataTypes.INTEGER,

@@ -12,6 +12,7 @@ import balanceRoutes from "./api/routes/balanceRoutes";
 import itemRoutes from "./api/routes/itemRoutes";
 import loginRoutes from "./api/routes/loginRoutes";
 import orderRoutes from "./api/routes/orderRoutes";
+import paymentRoutes from "./api/routes/paymentRoutes";
 import registerRoutes from "./api/routes/registerRoutes";
 import userRoutes from "./api/routes/userRoutes";
 
@@ -35,6 +36,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/items", itemRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/balance", balanceRoutes);
+app.use("/api/payment", paymentRoutes);
 
 app.listen(PORT, async () => {
 	console.log(`Server running on ${process.env.NODE_ENV} mode in port ${PORT}`);

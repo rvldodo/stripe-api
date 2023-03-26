@@ -42,12 +42,12 @@ class orderController {
 
 		const { price } = item;
 
-		const totalPrice = Number((price * quantity).toFixed(2));
+		const totalPrice = price * quantity;
 
 		if (totalPrice > balance.balance) {
 			return res.json({
 				message: "Balance is not enough",
-				totalBalance: Number(balance.balance.toFixed(2)),
+				totalBalance: balance.balance,
 			});
 		}
 
@@ -100,7 +100,7 @@ class orderController {
 			}
 
 			newOrder.orders = ordersUser;
-			newOrder.totalPrice = Number(cost.toFixed(2));
+			newOrder.totalPrice = cost;
 			return res.status(200).json({ orders: newOrder });
 		}
 
@@ -142,7 +142,7 @@ class orderController {
 
 		order.itemId = itemId;
 		order.quantity = quantity;
-		order.totalPrice = Number((price * quantity).toFixed(2));
+		order.totalPrice = price * quantity;
 
 		await order.save();
 
